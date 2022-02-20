@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 import pandas as pd
+import math
 
 def main():
     paths = sys.argv[1:]
@@ -38,7 +39,7 @@ def main():
         sns.scatterplot(x='time', y='delta', data=df)
         plt.errorbar(df.time, df.temp0, yerr=0.5, alpha=0.2)
         plt.errorbar(df.time, df.temp1, yerr=0.5, alpha=0.2)
-        plt.errorbar(df.time, df.delta, yerr=1, alpha=0.2)
+        plt.errorbar(df.time, df.delta, yerr=math.sqrt(2)/2, alpha=0.2)
         plt.legend(labels=["temp0", "temp1", 'delta'])
         plt.xlabel('time [s]')
         plt.ylabel('temprature [C]')
